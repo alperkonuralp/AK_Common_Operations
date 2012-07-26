@@ -45,6 +45,7 @@
     <Compile Include="AssemblyNotFoundException.cs" />
     <Compile Include="BinarySerializerHelper.cs" />
     <Compile Include="Converter.cs" />
+    <Compile Include="DataContractJsonSerializerHelper.cs" />
     <Compile Include="DataContractSerializerHelper.cs" />
     <Compile Include="Properties\ExceptionMessages.Designer.cs">
       <AutoGen>True</AutoGen>

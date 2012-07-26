@@ -1,31 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 
 namespace AK.CommonOperations
 {
-    /// <summary>
-    /// Data Contract Serializer Helper
-    /// </summary>
-    public static class DataContractSerializerHelper
+    public static class DataContractJsonSerializerHelper
     {
-        private static readonly SortedList<Type, DataContractSerializer> _serializers = new SortedList<Type, DataContractSerializer>();
+        // ReSharper disable InconsistentNaming
+        private static readonly SortedList<Type, DataContractJsonSerializer> _serializers = new SortedList<Type, DataContractJsonSerializer>();
+        // ReSharper restore InconsistentNaming
 
         /// <summary>
         /// Gets this instance.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static DataContractSerializer Get<T>()
+        public static DataContractJsonSerializer Get<T>()
         {
-            DataContractSerializer serializer;
+            DataContractJsonSerializer serializer;
             if (_serializers.TryGetValue(typeof(T), out serializer))
             {
                 return serializer;
             }
-            serializer = new DataContractSerializer(typeof(T));
+            serializer = new DataContractJsonSerializer(typeof(T));
             _serializers.Add(typeof(T), serializer);
             return serializer;
         }
@@ -35,14 +34,14 @@ namespace AK.CommonOperations
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public static DataContractSerializer Get(Type type)
+        public static DataContractJsonSerializer Get(Type type)
         {
-            DataContractSerializer serializer;
+            DataContractJsonSerializer serializer;
             if (_serializers.TryGetValue(type, out serializer))
             {
                 return serializer;
             }
-            serializer = new DataContractSerializer(type);
+            serializer = new DataContractJsonSerializer(type);
             _serializers.Add(type, serializer);
             return serializer;
         }
